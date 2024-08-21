@@ -1,0 +1,26 @@
+1. Menyelesaikan proses konfirmasi (v)
+2. Membuat database histori reject (v) dan current_report (v)
+3. Menampilkan semua permasalahan di semua user (v)
+4. Liat semua histori reject (v) dan accepted (v)
+5. Buat halaman detail current_report (v)
+6. Manajer bisa assign PIC dan Due Date (v)
+7. Manajer bisa hapus current_report (x)
+8. Menampilkan tugas ke users via tugas saya (v)
+9. Users submit foto after, kalau misalnya salah bisa update foto (v)
+10. Manajer bisa menutup laporan yang sudah disubmit (v)
+11. Bikin dedicated halaman buat nampilin semua dan detail 
+    a. Tugas Saya (v)
+    b. Belum Dikonfirmasi (v)
+    c. Perlu Konfirmasi (v)
+    d. Review Tindak Lanjut (v)
+12. C(?)  R(v)  U(v)  D User jangan lupa
+13. Pagination buat setiap tampilan semua (bukan detail) (v)
+14. Nambah button "show more" di dashboard kalo laporan melebihi 4 data (v)
+
+URGENT HOTFIX:
+1. Konfirmasi masalah dan assign duedate dijadiin 1 (v)
+2. Global report diurut berdasar due date yang paling deket dengan sekarang (v)
+
+1. Manajer mampu untuk mengganti tindak lanjut saat acc awal (v)
+2. Pengguna yang mengupload dapat memberikan komen penyelesian (v)
+3. Pilihan untuk pending permasalahan (v)

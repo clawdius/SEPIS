@@ -1,0 +1,88 @@
+<form method="POST">
+    <div class='d-flex text-white' style='padding: 0 5%'>
+        <!-- Foto Nanti ya sahabat -->
+        <div class='col-4' style='border: 0.05em var(--orange) solid; margin: 1.25em 0 0 0;'>
+            <div class='photoAsset'></div>
+        </div>
+        <!-- Kolom Tengah -->
+        <div class='d-flex flex-column col-4' style="padding: 0 2.5%">
+            <div>
+                <div class='inputTitle'>
+                    Kode Inventaris
+                </div>
+                <div class='background-black w-100'>
+                    <input type="text" class='customInput text-orange w-100' name='inKode' required value='<%= aset.KODE_INVENTARIS %>' id='KODE_INVENTARIS' placeholder="XXX-INV-KPJ">
+                </div>
+            </div>
+            <div>
+                <div class='inputTitle'>
+                    Merk / Tipe
+                </div>
+                <div class='background-black w-100'>
+                    <input type="text" class='customInput text-orange w-100' name='inMerk' value='<%= aset.MERK %>' placeholder="Samsung, Hitachi, dll">
+                </div>
+            </div>
+            <div>
+                <div class='inputTitle'>
+                    Harga Beli
+                </div>
+                <div class='background-black w-100 d-flex align-items-center text-orange '>
+                    <span style='margin: 0 0 0 0.5em '>Rp.</span><input type="number" step=1000 min=0 class='customInput w-100 ' id='inputHarga ' name="inBeli" required value=<%- aset.HARGA_BELI %> placeholder='2500000'>
+                </div>
+            </div>
+            <div>
+                <div class='inputTitle '>
+                    Bulan dan Tahun Beli
+                </div>
+                <div class='background-black w-100 '>
+                    <input type="month" class='customInput text-orange w-100 ' name="inBulanBeli" required value='<%= aset.DATE_BELI %>'>
+                </div>
+            </div>
+        </div>
+        <!-- Kolom Kanan -->
+        <div class='d-flex flex-column col-4 ' style="padding: 0 2.5%">
+            <div>
+                <div class='inputTitle '>
+                    Nama Aset
+                </div>
+                <div class='background-black w-100 '>
+                    <input type="text" class='customInput text-orange w-100 ' required name='inNama' value='<%= aset.NAMA_ASET %>' placeholder="Masukkan nama aset">
+                </div>
+            </div>
+            <div>
+                <div class='inputTitle '>
+                    Status
+                </div>
+                <div class='background-black w-100 '>
+                    <select class='customInput text-orange w-100' name="inStatus">
+                        <% var options = ['AKTIF', 'PERBAIKAN', 'GUDANG'];
+                        for (let i = 0; i < options.length; i++) { 
+                            let selected = (aset.STATUS == options[i]) ? "selected" : ""; %>
+                            <option value="<%= options[i] %>" <%- selected %>><%= options[i] %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class='inputTitle '>
+                    Jumlah Unit
+                </div>
+                <div class='background-black w-100 d-flex align-items-center text-orange '>
+                    <input type="number" min=1 value=1 class='customInput w-100 ' id='inputUnit ' name="inUnit" value='<%= aset.JUMLAH_UNIT %>'>
+                </div>
+            </div>
+            <div>
+                <div class='inputTitle '>
+                    Keterangan
+                </div>
+                <div class='background-black w-100 '>
+                    <textarea class='customInput text-orange w-100 ' style='resize: none; ' rows="4" name="inKeterangan" placeholder="Masukkan keterangan aset"><%= aset.KETERANGAN %></textarea>
+                </div>
+            </div>
+            <div class='d-flex ' style='margin: 2em 0 0 auto '>
+                <input type="reset" class='buttonStylishOutline ' style='width: auto; margin: 0 1em 0 0 '>
+                <button type="submit" class='buttonStylish ' style='width: auto; '><%= title %> 
+            </div>
+        </div>
+    </div>
+</form>

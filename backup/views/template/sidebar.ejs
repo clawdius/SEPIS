@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/custom.css">
+</head>
+
+<body>
+    <div class='sidebar-toggle'><img src='/assets/img_app/menu-toggle.svg' id='sidebar-toggle'></div>
+    <div class='d-flex' style="position: fixed">
+        <div class='sidebar-container close' id='sidebar'>
+            <div class='d-flex flex-column h-100'>
+                <div class='d-flex align-items-center flex-column'>
+                    <a href="/dashboard">
+                        <img src="/assets/img_app/tamansariIconSmall.png" style='width: 2em; height: 2em; margin: 0 0 1em 0'>
+                    </a>
+                    <div>Halo,</div>
+                    <div style='position: relative; bottom: 0.5em; white-space: nowrap;'>
+                        <span style='font-weight: 600; font-size: 1.75em;'><%= username %></span>
+                    </div>
+                </div>
+                <a href='/logout' style='margin-top: auto;'>
+                    <div class='log-out mx-auto'>Log Out</div>
+                </a>
+                <div class='divider-orange' style='margin: 0.5em 0 0 0'></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    window.addEventListener('load', function() {
+        var sidebar = document.getElementById('sidebar')
+        var bgBlur = document.getElementById('background-blur')
+        var toggler = document.getElementById('sidebar-toggle')
+
+        function openClose() {
+            if (sidebar.classList.contains('close')) {
+                sidebar.classList.remove('close')
+                sidebar.classList.add('open')
+                bgBlur.style.display = 'block'
+            } else {
+                sidebar.classList.remove('open')
+                sidebar.classList.add('close')
+                bgBlur.style.display = 'none'
+            }
+        }
+
+        toggler.addEventListener('click', openClose)
+        bgBlur.addEventListener('click', openClose)
+    })
+</script>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <%- include('template/sidebar.ejs')
+ %>
+
+
+        <div class='confirmationOverlay hide' id='confirmationOverlay'>
+            <div class='confirmationBox text-white'>
+                <div>
+                    Apakah anda yakin ingin menghapus aset
+                </div>
+                <div style='font-size: 1.5em; font-weight: 400;'>
+                    <%= aset.NAMA_ASET %> ?
+                </div>
+                <div style='margin: 1em 0 0 0'>
+                    <button class='buttonStylishOutline' style='margin: 0 0.5em' onclick="toggleConfirm()">Batal</button>
+                    <button class='buttonStylish' style='margin: 0 0.5em' onclick="window.location = '<%= aset.KODE_INVENTARIS %>/delete'">Hapus</button>
+                </div>
+            </div>
+            <div class='background-black w-100 h-100' style='opacity: 50%; position: absolute; z-index: 10;'></div>
+        </div>
+        <div class='safeArea' style='font-family: roboto;'>
+            <div class='d-flex listAssetsTopContainer align-items-center'>
+                <div class='topTitle'>
+                    <%= title %>
+                </div>
+            </div>
+            <div class='divider-orange' style='margin: 0 0 1em 0'></div>
+            <div class='d-flex text-white' style='padding: 0 5%'>
+                <!-- Foto Nanti ya sahabat -->
+                <div class='col-4' style='border: 0.05em var(--orange) solid; margin: 1.25em 0 0 0;'>
+                    <div class='photoAsset'></div>
+                </div>
+                <!-- Kolom Tengah -->
+                <div class='d-flex flex-column col-4' style="padding: 0 2.5%">
+                    <div>
+                        <div class='detailTitle'>
+                            Kode Inventaris
+                        </div>
+                        <div class='w-100'>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.KODE_INVENTARIS %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle'>
+                            Merk / Tipe
+                        </div>
+                        <div class='w-100'>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.MERK %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle'>
+                            Harga Beli
+                        </div>
+                        <div class='text-orange w-100 detailContent'>
+                            <%= currencyFormatter(aset.HARGA_BELI) %>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle '>
+                            Bulan dan Tahun Beli
+                        </div>
+                        <div class='text-orange w-100 detailContent'>
+                            <%= dateBeli %>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle '>
+                            Tanggal Entri Data
+                        </div>
+                        <div class='text-orange w-100 detailContent'>
+                            <%= dateEntri %>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kolom Kanan -->
+                <div class='d-flex flex-column col-4 ' style="padding: 0 2.5%">
+                    <div>
+                        <div class='detailTitle '>
+                            Nama Aset
+                        </div>
+                        <div class='w-100 '>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.NAMA_ASET %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle '>
+                            Status
+                        </div>
+                        <div class='w-100 '>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.STATUS %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle '>
+                            Jumlah Unit
+                        </div>
+                        <div class='text-orange '>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.JUMLAH_UNIT %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle '>
+                            Keterangan
+                        </div>
+                        <div class='w-100 '>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.KETERANGAN %>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='detailTitle '>
+                            User Entri
+                        </div>
+                        <div class='w-100 '>
+                            <div class='text-orange w-100 detailContent'>
+                                <%= aset.USERNAME %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='d-flex ' style='margin: 2em 0 0 auto '>
+                        <button class='buttonStylishOutline ' style='width: auto; margin: 0 1em 0 0 ' onclick="toggleConfirm()"> Hapus
+                        <button class='buttonStylish' style='width: auto;' onclick='window.location = "<%= aset.KODE_INVENTARIS %>/edit"'>Edit <%= aset.NAMA_ASET %>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+<% function currencyFormatter(amount) {
+    const formatter = new Intl.NumberFormat(undefined, {
+        style: 'currency',
+        currency: 'IDR'
+    })
+    return formatter.format(amount)
+} %>
+
+<script>
+
+    function toggleConfirm() {
+        console.log('yiha')
+        let confirmation = document.getElementById('confirmationOverlay')
+        if (confirmation.classList.contains('show')){
+            confirmation.classList.add('hide')
+            confirmation.classList.remove('show')
+        } else {
+            confirmation.classList.add('show')
+            confirmation.classList.remove('hide')
+        }
+        
+    }
+
+</script>
+
+</html>

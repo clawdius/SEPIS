@@ -1,0 +1,28 @@
+<html>
+
+<body>
+
+    <form action='/upload' method='post' enctype="multipart/form-data">
+
+        <input type='file' accept='image/*' name='imgBruh' id='imageUpload'>
+        <button type='submit'>Upload</button>
+
+        <img id='imgPreviewBefore'>
+
+    </form>
+
+    <script>
+        var uploader = document.getElementById('imageUpload')
+        uploader.addEventListener('change', function(event) {
+            const [img] = uploader.files
+            if (img) {
+                document.getElementById('imgPreviewBefore').src = URL.createObjectURL(img)
+            }
+
+        })
+    </script>
+
+</body>
+
+
+</html>

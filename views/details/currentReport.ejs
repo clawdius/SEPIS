@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Laporan Berjalan</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+
+            <div class='safeArea'>
+
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Detail Laporan</div>
+                    <div class='divider-orange'></div>
+                </div>
+
+                <%- include('../template/reportCoreCurrent.ejs') %>
+
+                    <%  if(role == 'Manager') {
+                    let assignLoc = '/report/current/'+result.ID_CURRENT+'/assign'
+                %>
+                        <div class='mt-5 d-flex '>
+                            <button class='buttonStylish mx-1 buttonCustom w-100' onclick='window.location="<%= assignLoc %>"'>Ganti</button>
+                        </div>
+                        <% } %>
+            </div>
+
+</body>
+
+</html>

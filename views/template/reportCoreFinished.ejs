@@ -1,0 +1,102 @@
+<div style='margin: 2em 0 0 0' class='d-flex flex-column align-items-center'>
+    <div class='text-white' style='font-size: 1.25em; margin: 0 0 2em; text-align: center;'>
+        <%= result.ID_FINISHED %>
+    </div>
+    <div class='mb-2 d-flex w-100 text-center' style='z-index: 0;'>
+        <div class='buttonStylish mx-1 mt-0 buttonCustom' id='buttonBefore' onclick="changePhoto('before')" style='cursor: pointer;'>Sebelum</div>
+        <div class='buttonStylishOutline mx-1 mt-0 buttonCustom' id='buttonAfter' onclick="changePhoto('after')" style='cursor: pointer;'>Sesudah</div>
+    </div>
+    <div class='imgViewer'>
+        <img id='imgPreview' src='/image/<%= result.IMAGE_FINISHED %>before.jpeg'>
+    </div>
+    <div style="padding: 0 2em" class='text-center'>
+        <div style='margin: 2em 0'>
+            <div class=' inputTitle text-white '>Topik / Lokasi</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.TOPIC_FINISHED %>
+            </div>
+            <div class='inputTitle text-white '>Permasalahan</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.PROBLEM_FINISHED %>
+            </div>
+            <div class='inputTitle text-white '>Tindak Lanjut / Saran</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.SUGGEST_FINISHED %>
+            </div>
+        </div>
+        <div class='divider-orange' style='margin: 2em 0'></div>
+        <div>
+            <div class='inputTitle text-white '>Pelapor</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.REPORTER_REAL_NAME %>
+            </div>
+            <div class='inputTitle text-white '>Dikonfirmasi Oleh</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.MANAGER_REAL_NAME %>
+            </div>
+            <div class='inputTitle text-white '>Penanggung Jawab</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.ASSIGNEE_REAL_NAME %>
+            </div>
+        </div>
+        <div class='divider-orange' style='margin: 2em 0'></div>
+        <div>
+            <div class='inputTitle text-white '>Tanggal Lapor</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.DATE_CREATED %>
+            </div>
+            <div class='inputTitle text-white '>Deadline Penyelesaian</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.DATE_DUE %>
+            </div>
+            <div class='inputTitle text-white '>Diselesaikan Pada</div>
+            <div class='text-orange ' style='font-size: 1.25em; '>
+                <%= result.DATE_SUBMITTED %>
+            </div>
+        </div>
+        <div class='divider-orange' style='margin: 2em 0'></div>
+        <div>
+            <% if(result.COMMENT_MANAGER != '') {%>
+                <div class='inputTitle text-white '>Komentar Manager</div>
+                <div class='text-orange ' style='font-size: 1.25em; '>
+                    <%= result.COMMENT_MANAGER %>
+                </div>
+                <% } %>
+                    <% if(result.COMMENT_ASSIGNEE != '') {%>
+                        <div class='inputTitle text-white '>Komentar Pelapor</div>
+                        <div class='text-orange ' style='font-size: 1.25em; '>
+                            <%= result.COMMENT_ASSIGNEE %>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+</div>
+<script>
+    var btnBefore = document.getElementById('buttonBefore')
+    var btnAfter = document.getElementById('buttonAfter')
+    var img = document.getElementById('imgPreview')
+
+    function changePhoto(status) {
+        switch (status) {
+            case 'before':
+                btnAfter.classList.remove('buttonStylish');
+                btnAfter.classList.add('buttonStylishOutline');
+
+                btnBefore.classList.add('buttonStylish');
+                btnBefore.classList.remove('buttonStylishOutline');
+
+                img.setAttribute('src', '/image/' + "<%= result.ID_FINISHED %>" + 'before.jpeg')
+
+                break;
+            case 'after':
+                btnBefore.classList.remove('buttonStylish');
+                btnBefore.classList.add('buttonStylishOutline');
+
+                btnAfter.classList.add('buttonStylish');
+                btnAfter.classList.remove('buttonStylishOutline');
+
+                img.setAttribute('src', '/image/' + "<%= result.ID_FINISHED %>" + 'after.jpeg')
+                break;
+        }
+    }
+</script>

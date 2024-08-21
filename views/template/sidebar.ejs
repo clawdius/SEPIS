@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/custom.css">
+<link rel="stylesheet" href="/assets/custom_wide.css">
+
+<body>
+    <div class='sidebar-toggle'>
+        <img src='/assets/img_app/menu-toggle.svg' id='sidebar-toggle'>
+    </div>
+
+    <div class='sidebar-toggle'>
+        <a href="/dashboard">
+            <img src="/assets/img_app/tamansariIconSmall.png" id='home-toggle'>
+        </a>
+    </div>
+
+    <div class='background-sidebar'>
+    </div>
+
+    <div class='sidebar-container close d-flex' id='sidebar' style='position: fixed;'>
+        <div class='d-flex flex-column align-items-center w-100' style='height: 100%;'>
+            <div class='d-flex w-100 justify-content-between px-3 mb-4'>
+                <div class='d-flex flex-column mx-4'>
+                    <span style='font-weight: 600; font-size: 1.25em;'><%= real_name %></span>
+                </div>
+                <div class='d-flex flex-column my-auto mx-4'>
+                    <a href='/logout'>
+                        <div class='log-out mx-auto'>Keluar</div>
+                    </a>
+                    <div class='divider-orange-semi' style='margin: 0.5em 0 0 0'></div>
+                </div>
+            </div>
+            <div class='w-100 my-1 px-3' style='overflow-y: auto;'>
+                <div>
+                    <div class='sidebar-content-title'>
+                        <div class='mx-4'>Aktivitas Saya</div>
+                        <div class='divider-orange' style='width: 4em;'></div>
+                    </div>
+                    <div class='sidebar-content-container' onclick="window.location='/report/mytasks'">
+                        <div class='mx-5'>Tugas Saya</div>
+                    </div>
+                    <div class='sidebar-content-container' onclick="window.location='/report/proposed'">
+                        <div class='mx-5'>Belum Dikonfirmasi</div>
+                    </div>
+                </div>
+                <div>
+                    <div class='sidebar-content-title'>
+                        <div class='mx-4'>Laporan</div>
+                        <div class='divider-orange' style='width: 4em;'></div>
+                    </div>
+                    <div class='sidebar-content-container' onclick="window.location='/report/current' ">
+                        <div class='mx-5'>Laporan Berjalan</div>
+                    </div>
+                    <div class='sidebar-content-container' onclick="window.location='/report/finished' ">
+                        <div class='mx-5'>Laporan Selesai</div>
+                    </div>
+                    <% if(role == 'Manager') { %>
+                        <div class='sidebar-content-container' onclick="window.location='/report/rejected' ">
+                            <div class='mx-5'>Laporan Tertolak</div>
+                        </div>
+                        <% } %>
+                </div>
+
+                <% if(role == 'Manager') { %>
+                    <div>
+                        <div class='sidebar-content-title'>
+                            <div class='mx-4'>Manajerial</div>
+                            <div class='divider-orange' style='width: 4em;'></div>
+                        </div>
+                        <div class='sidebar-content-container' onclick="window.location='/report/confirmation' ">
+                            <div class='mx-5'>Perlu Konfirmasi</div>
+                        </div>
+                        <div class='sidebar-content-container' onclick="window.location='/report/review' ">
+                            <div class='mx-5'>Review Tindak Lanjut</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class='sidebar-content-title'>
+                            <div class='mx-4'>Pengguna</div>
+                            <div class='divider-orange' style='width: 4em;'></div>
+                        </div>
+                        <div class='sidebar-content-container' onclick="window.location='/users' ">
+                            <div class='mx-5'>Semua Pengguna</div>
+                        </div>
+                        <div class='sidebar-content-container' onclick="window.location='/users/add' ">
+                            <div class='mx-5'>Tambah Pengguna</div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    window.addEventListener('load', function() {
+        var sidebar = document.getElementById('sidebar')
+        var toggler = document.getElementById('sidebar-toggle')
+
+        function openClose() {
+            if (sidebar.classList.contains('close')) {
+                sidebar.classList.remove('close')
+                sidebar.classList.add('open')
+            } else {
+                sidebar.classList.remove('open')
+                sidebar.classList.add('close')
+            }
+        }
+
+        toggler.addEventListener('click', openClose)
+    })
+</script>

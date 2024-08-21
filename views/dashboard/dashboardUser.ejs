@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+            <div class='safeArea'>
+                <div style='margin: 2em 0 4em'>
+                    <div class='topTitle' style='margin: 0'>Halo,
+                        <%- real_name %>
+                    </div>
+                    <div class='bottomTitle'>Anda masuk sebagai
+                        <span style='font-weight: 400;'><%- role %></span>
+                    </div>
+                </div>
+                <%- include('../template/dashboardCore.ejs') %>
+                    <button class='buttonStylish buttonCustom' onclick="window.location = '/report/new'">Buat Laporan Baru</button>
+            </div>
+</body>
+
+</html>

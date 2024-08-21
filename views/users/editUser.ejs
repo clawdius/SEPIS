@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pengguna
+    </title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs')  %>
+        <%- include('../template/loader.ejs') %>
+
+            <div class='safeArea'>
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Edit Pengguna</div>
+                    <div class='divider-orange'></div>
+                </div>
+                <div style='margin: 1em 0 0 0' class='d-flex flex-column align-items-center'>
+                    <form method='post' class='d-flex flex-column w-100' autocomplete="off" id='formEditUser'>
+                        <div class='w-100 d-flex flex-column align-items-center'>
+                            <div class='inputTitle text-white'>Nama</div>
+                            <div class='background-black py-1 w-100'>
+                                <input type='text' name='name' class='inputStylish text-orange' value='<%= result.REAL_NAME %>' required>
+                            </div>
+                            <div class='inputTitle text-white'>Username</div>
+                            <div class='background-black py-1 w-100'>
+                                <input type='text' name='usernameEdit' class='inputStylish text-orange' disabled value='<%= result.USERNAME %>'>
+                            </div>
+                            <button class='buttonStylishOutline buttonCustom' onclick="togglePass()" type="button">Edit Password</button>
+                            <div class='d-flex flex-column hidden w-100' id='form-password' style="overflow-y: hidden;">
+                                <div class='inputTitle text-white text-center'>Password Baru</div>
+                                <div class='background-black py-1'>
+                                    <input type='password' name='passwordInput' id='password-input' class='inputStylish text-orange'>
+                                </div>
+                                <div class='text-center text-white mt-3' id='validation-div'></div>
+                            </div>
+                            <div class='text-center text-white mx-2' id='validation-div'></div>
+                            <button type='submit' class='buttonStylish' style='margin: 2em auto 0 auto; width: 100%;'>Edit Pengguna</button>
+                            <div class='text-center text-orange mt-3' id='submit-div'></div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                var passwordForm = document.getElementById('form-password')
+
+                function togglePass() {
+                    if (passwordForm.classList.contains('hidden')) {
+                        passwordForm.classList.remove('hidden')
+                        passwordForm.classList.add('show')
+                    } else {
+                        passwordForm.classList.remove('show')
+                        passwordForm.classList.add('hidden')
+                    }
+                }
+            </script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Laporan Selesai Saya</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+
+
+            <div class='safeArea'>
+                <div style="margin: 2em 0">
+                    <div class='topTitle'>Daftar Laporan Selesai Saya</div>
+                    <div class='divider-orange'></div>
+                    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+                        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+                            <div class='col-6 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                Masalah
+                            </div>
+                            <div class='col-6 justify-content-center align-items-center d-flex py-1 background-darkorange'>
+                                Selesai
+                            </div>
+                        </div>
+                        <% number = 0 %>
+                            <% let color %>
+                                <% for (const resultList of result) { %>
+                                    <%  if(number % 2 == 0) {
+                    color = 'background-semidarkgrey1'
+                } else {
+                    color = 'background-semidarkgrey2'
+                }
+                %>
+
+                                        <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/finished/<%= resultList.ID_FINISHED %>'">
+                                            <div class='col-6 justify-content-center align-items-center d-flex'>
+                                                <%= resultList.PROBLEM_FINISHED %>
+                                            </div>
+                                            <div class='col-6 justify-content-center align-items-center d-flex'>
+                                                <%= resultList.DATE_SUBMITTED %>
+                                            </div>
+                                        </div>
+                                        <% number++ %>
+                                            <% } %>
+                    </div>
+                    <%- include('../template/pagination') %>
+                </div>
+            </div>
+
+</body>
+
+</html>

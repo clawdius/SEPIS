@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <%- include('template/sidebar.ejs')
+ %>
+
+
+        <div class='safeArea' style='font-family: roboto;'>
+            <div class='d-flex listAssetsTopContainer align-items-center'>
+                <div class='topTitle'>
+                    <%= title %>
+                </div>
+            </div>
+            <div class='divider-orange' style='margin: 0 0 1em 0'></div>
+            <%- include('template/asetEditor.ejs') %>
+        </div>
+</body>
+
+<!-- JS -->
+<script>
+    urlNow = new URL(window.location.href)
+    state = new URLSearchParams(urlNow.search)
+    if (state.get('error')) {
+        switch (state.get('error')) {
+            case 'duplicateKey':
+                alert('Kode Inventaris sudah ada di database!')
+                break
+        }
+    }
+</script>
+
+<script>
+    function lastUrl() {
+        const urlLast = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+        return urlLast
+    }
+
+    var urlNow = lastUrl()
+
+    if (urlNow == 'edit') {
+        document.getElementById('KODE_INVENTARIS').disabled = true;
+    }
+</script>
+
+</html>

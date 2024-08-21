@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pengguna</title>
+</head>
+
+<body>
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+
+            <div class='safeArea'>
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Detail User</div>
+                    <div class='divider-orange'></div>
+                </div>
+                <div class='text-center'>
+                    <div style='padding: 0 2em'>
+                        <div class='row'>
+                            <div class='col-6'>
+                                <div class=' inputTitle text-white '>Nama</div>
+                                <div class='text-orange ' style='font-size: 1.5em; font-weight: 500; word-wrap: break-word;'>
+                                    <%= result.REAL_NAME %>
+                                </div>
+                            </div>
+                            <div class='col-6'>
+                                <div class=' inputTitle text-white '>Username</div>
+                                <div class='text-orange ' style='font-size: 1.5em; font-weight: 500; word-wrap: break-word;'>
+                                    <%= result.USERNAME %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-6'>
+                                <div class='inputTitle text-white '>Tugas Selesai</div>
+                                <div class='text-orange ' style='font-size: 1.75em; font-weight: 500;'>
+                                    <%= result.FINISHED %>
+                                </div>
+                            </div>
+                            <div class='col-6'>
+                                <div class='inputTitle text-white '>Tugas Sekarang</div>
+                                <div class='text-orange ' style='font-size: 1.75em; font-weight: 500;'>
+                                    <%= result.CURRENT %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-12'>
+                                <div class='inputTitle text-white '>Status User</div>
+                                <div class='text-orange ' style='font-size: 1.5em; font-weight: 500;'>
+                                    <%= result.STATUS %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin: 3em 0">
+                        <div class='topTitle'>Penyelesaian Terbaru</div>
+                        <div class='divider-orange'></div>
+                        <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+                            <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+                                <div class='col-6 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                    Masalah
+                                </div>
+                                <div class='col-6 justify-content-center align-items-center d-flex py-1 background-darkorange'>
+                                    Selesai
+                                </div>
+                            </div>
+                            <% let number = 0 %>
+                                <% let color %>
+                                    <% for (const resultList of detail) { %>
+                                        <%  if(number % 2 == 0) {
+                        color = 'background-semidarkgrey1'
+                    } else {
+                        color = 'background-semidarkgrey2'
+                    }
+                    %>
+
+                                            <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/finished/<%= resultList.ID_FINISHED %>'">
+                                                <div class='col-6 justify-content-center align-items-center d-flex'>
+                                                    <%= resultList.PROBLEM_FINISHED %>
+                                                </div>
+                                                <div class='col-6 justify-content-center align-items-center d-flex'>
+                                                    <%= resultList.DATE_SUBMITTED %>
+                                                </div>
+                                            </div>
+                                            <% number++ %>
+                                                <% } %>
+
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <% if (result.STATUS == 'Aktif') { %>
+                        <div class='col-6'>
+                            <button class='buttonStylishOutline buttonCustom w-100' onclick="window.location='/users/<%= result.USERNAME %>/deactivate' ">Nonaktifkan</button>
+                        </div>
+                        <% } else { %>
+                            <div class='col-6'>
+                                <button class='buttonStylishOutline buttonCustom w-100' onclick="window.location='/users/<%= result.USERNAME %>/activate' ">Aktifkan</button>
+                            </div>
+                            <% } %>
+                                <div class='col-6'>
+                                    <button class='buttonStylish buttonCustom w-100' onclick="window.location='/users/<%= result.USERNAME %>/edit' ">Edit</button>
+                                </div>
+                </div>
+            </div>
+</body>
+
+</html>

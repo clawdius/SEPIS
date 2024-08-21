@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Laporan</title>
+</head>
+
+<body>
+
+    <%- include('template/sidebar.ejs') %>
+        <%- include('template/loader.ejs') %>
+
+            <div class='safeArea'>
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Konfirmasi Laporan</div>
+                    <div class='divider-orange'></div>
+                </div>
+
+                <%- include('template/reportCoreProposed.ejs') %>
+
+                    <form autocomplete="off" method='post' class='w-100'>
+                        <div class='divider-orange' style='margin: 2em 0'></div>
+                        <div>
+                            <div class='inputTitle text-white text-center'>Pilih Penanggung Jawab</div>
+                            <div class='background-black py-1 text-align-center'>
+                                <select class='inputStylish text-orange' name='PICInput'>
+                                <% for(const usersList of users) { %>
+                                    <option value='<%= usersList.REAL_NAME %>'><%= usersList.REAL_NAME %></option> 
+                                <% } %> 
+                        </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='inputTitle text-white text-center'>Pilih Deadline</div>
+                            <div class='background-black py-1'>
+                                <input type='date' name='duedateInput' id='duedateInput' value="<%= today %>" min="<%= today %>" class='inputStylish text-orange'>
+                            </div>
+                        </div>
+                        <div>
+                            <div class='inputTitle text-white text-center'>Ganti Tindak Lanjut / Saran</div>
+                            <div class='background-black py-1'>
+                                <textarea name='suggestInput' class='inputStylish text-orange' rows="4"><%= result.SUGGEST_PROPOSED %></textarea>
+                            </div>
+                        </div>
+
+
+                        <%  let rejectLoc = '/report/confirmation/'+result.ID_PROPOSED+'/reject' 
+                    let confirmLoc = '/report/confirmation/'+result.ID_PROPOSED+'/confirm'
+                %>
+                            <div class='mt-5 d-flex w-100'>
+                                <button class='buttonStylishOutline mx-1 buttonCustom' onclick='window.location="<%= rejectLoc %>"' type="button">Tolak</button>
+                                <button class='buttonStylish mx-1 buttonCustom' type="submit">Konfirmasi</button>
+                            </div>
+                    </form>
+            </div>
+
+</body>
+
+</html>

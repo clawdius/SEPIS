@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinjau Laporan</title>
+</head>
+
+<body>
+
+    <%- include('template/sidebar.ejs')
+ %>
+
+
+
+        <div class='safeArea'>
+            <div style='margin: 1em 0 0 0'>
+                <div class='topTitle'>Tinjau Laporan</div>
+                <div class='divider-orange'></div>
+            </div>
+
+            <div style='margin: 2em 0 0 0' class='d-flex flex-column align-items-center'>
+                <div class='text-white' style='font-size: 1.25em; margin: 0 0 1em 0; text-align: center;'>
+                    <%= result.ID_CURRENT %>
+                </div>
+                <% if(result.STATUS_CURRENT == 'Terkirim' || result.STATUS_CURRENT == 'Closed' || result.STATUS_CURRENT == 'Pending') { %>
+                    <div class='mb-2 d-flex w-100 text-center' style='z-index: 0;'>
+                        <div class='buttonStylish mx-1 buttonCustom' id='buttonBefore' onclick="changePhoto('before')" style='cursor: pointer; margin: 0;'>Sebelum</div>
+                        <div class='buttonStylishOutline mx-1 buttonCustom' id='buttonAfter' onclick="changePhoto('after')" style='cursor: pointer; margin: 0;'>Sesudah</div>
+                    </div>
+                    <% } %>
+                        <div class='imgViewer'>
+                            <img id='imgPreview' src='/image/<%= result.IMAGE_CURRENT %>before.jpeg'>
+                        </div>
+                        <div style="padding: 0 2em" class='text-center'>
+                            <div style='margin: 2em 0'>
+                                <div class=' inputTitle text-white '>Topik / Lokasi</div>
+                                <div class='text-orange ' style='font-size: 1.25em; '>
+                                    <%= result.TOPIC_CURRENT %>
+                                </div>
+                                <div class='inputTitle text-white '>Permasalahan</div>
+                                <div class='text-orange ' style='font-size: 1.25em; '>
+                                    <%= result.PROBLEM_CURRENT %>
+                                </div>
+                                <div class='inputTitle text-white '>Tindak Lanjut / Saran</div>
+                                <div class='text-orange ' style='font-size: 1.25em; '>
+                                    <%= result.SUGGEST_CURRENT %>
+                                </div>
+                            </div>
+                            <div class='divider-orange' style='margin: 2em 0'></div>
+                            <div class='inputTitle text-white '>Deadline</div>
+                            <div class='text-orange ' style='font-size: 1.25em;'>
+                                <%= result.DATE_DUE %>
+                            </div>
+                            <div class='inputTitle text-white '>Diupload pada</div>
+                            <div class='text-orange ' style='font-size: 1.25em; font-weight: 500;'>
+                                <%= result.DATE_SUBMITTED %>
+                            </div>
+                            <% if(result.COMMENT_ASSIGNEE !== '') { %>
+                                <div class='inputTitle text-white '>Komentar Pelapor</div>
+                                <div class='text-orange ' style='font-size: 1.25em; font-weight: 500;'>
+                                    <%= result.COMMENT_ASSIGNEE %>
+                                </div>
+                                <% } %>
+                        </div>
+                        <div class="d-flex mt-2 mb-3">
+                            <button class='buttonStylishOutline buttonCustom mx-1' onclick=pending()>Pending</button>
+                            <button class='buttonStylish buttonCustom mx-1' onclick='window.location="<%= result.ID_CURRENT %>/accept"'>Selesai</button>
+                        </div>
+                        <div id="pendingContainer" class="w-100" style='height: 0em'>
+                            <form method="post" action="<%= result.ID_CURRENT %>/pending" class='text-white d-flex flex-column align-items-center justify-content-center w-100'>
+                                <div class='inputTitle text-white'>Komentar</div>
+                                <div class='background-black py-1 w-100'>
+                                    <input type='text' name='commentInput' class='inputStylish text-orange w-100'>
+                                </div>
+                                <button type="submit" class='buttonStylish buttonCustom mx-1'>Pending Laporan</button>
+                            </form>
+                        </div>
+            </div>
+
+        </div>
+
+</body>
+<script>
+    var btnBefore = document.getElementById('buttonBefore')
+    var btnAfter = document.getElementById('buttonAfter')
+    var img = document.getElementById('imgPreview')
+
+    function changePhoto(status) {
+        switch (status) {
+            case 'before':
+                btnAfter.classList.remove('buttonStylish');
+                btnAfter.classList.add('buttonStylishOutline');
+
+                btnBefore.classList.add('buttonStylish');
+                btnBefore.classList.remove('buttonStylishOutline');
+
+                img.setAttribute('src', '/image/' + "<%= result.ID_CURRENT %>" + 'before.jpeg')
+
+                break;
+            case 'after':
+                btnBefore.classList.remove('buttonStylish');
+                btnBefore.classList.add('buttonStylishOutline');
+
+                btnAfter.classList.add('buttonStylish');
+                btnAfter.classList.remove('buttonStylishOutline');
+
+                img.setAttribute('src', '/image/' + "<%= result.ID_CURRENT %>" + 'after.jpeg')
+                break;
+        }
+    }
+</script>
+
+<script>
+    var pendingContainer = document.getElementById('pendingContainer')
+
+    function pending() {
+        if (pendingContainer.style.height == '0em') {
+            pendingContainer.style.height = '12em'
+        } else {
+            pendingContainer.style.height = '0em'
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Baru</title>
+</head>
+
+<body>
+
+    <%- include('template/sidebar.ejs') %>
+        <%- include('template/loader.ejs') %>
+            <div class='safeArea'>
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Laporan Baru</div>
+                    <div class='divider-orange'></div>
+                </div>
+                <div style='margin: 2em 0 0 0' class='d-flex flex-column align-items-center text-center'>
+                    <form method='post' enctype="multipart/form-data" class='d-flex flex-column' autocomplete="off" id='formNewReport'>
+
+                        <button type='button' class='buttonStylish' style='margin: 0 auto 2em auto' onclick='document.getElementById("imageUpload").click()'>Pilih Foto</button>
+                        <input type='file' accept='image/*' name='imgBefore' id='imageUpload' style='display: none' required>
+                        <div class='imgViewer' style='display: none'>
+                            <img id='imgPreviewBefore'>
+                        </div>
+                        <div class='w-100'>
+                            <div class='inputTitle text-white'>Topik / Lokasi</div>
+                            <div class='background-black py-1'>
+                                <input type='text' name='topicInput' class='inputStylish text-orange' required>
+                            </div>
+                            <div class='inputTitle text-white'>Permasalahan</div>
+                            <div class='background-black py-1'>
+                                <textarea name='problemInput' class='inputStylish text-orange' rows="2" required></textarea>
+                            </div>
+                            <div class='inputTitle text-white'>Tindak Lanjut / Saran</div>
+                            <div class='background-black py-1'>
+                                <textarea name='suggestInput' class='inputStylish text-orange' rows="4"></textarea>
+                            </div>
+                            <div class='inputTitle text-white'>Pelapor</div>
+                            <div class='background-black py-1'>
+                                <input type='text' name='reporterInput' class='inputStylish text-orange' disabled value='<%= name %>'>
+                            </div>
+                            <button type='submit' class='buttonStylish' style='margin: 4em auto 0 auto; width: 100%;'>Buat Laporan Baru</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                var uploader = document.getElementById('imageUpload')
+                uploader.addEventListener('change', function(event) {
+                    const [img] = uploader.files
+                    if (img) {
+                        document.getElementById('imgPreviewBefore').src = URL.createObjectURL(img)
+                        document.getElementsByClassName('ImgViewer')[0].style.display = 'block'
+                    }
+
+                })
+            </script>
+
+</body>
+
+
+</html>

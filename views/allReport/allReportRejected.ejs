@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Laporan Tertolak</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+
+
+            <div class='safeArea'>
+                <div style="margin: 2em 0">
+                    <div class='topTitle'>Daftar Laporan Tertolak</div>
+                    <div class='divider-orange'></div>
+                    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+                        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+                            <div class='col-4 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                Topik
+                            </div>
+                            <div class='col-4 justify-content-center align-items-center d-flex py-1 background-darkorange'>
+                                Masalah
+                            </div>
+                            <div class='col-4 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                Pelapor
+                            </div>
+                        </div>
+                        <% number = 0 %>
+                            <% let color %>
+                                <% for (const resultList of result) { %>
+                                    <%  if(number % 2 == 0) {
+                    color = 'background-semidarkgrey1'
+                } else {
+                    color = 'background-semidarkgrey2'
+                } %>
+
+                                        <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/rejected/<%= resultList.ID_REJECTED %>'">
+                                            <div class='col-4 justify-content-center align-items-center d-flex'>
+                                                <%= resultList.TOPIC_REJECTED %>
+                                            </div>
+                                            <div class='col-4 justify-content-center align-items-center d-flex'>
+                                                <%= resultList.PROBLEM_REJECTED %>
+                                            </div>
+                                            <div class='col-4 justify-content-center align-items-center d-flex'>
+                                                <%= resultList.REAL_NAME %>
+                                            </div>
+                                        </div>
+                                        <% number++ %>
+                                            <% } %>
+                    </div>
+                    <%- include('../template/pagination') %>
+                </div>
+            </div>
+
+</body>
+
+</html>

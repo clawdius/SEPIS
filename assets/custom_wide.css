@@ -1,0 +1,20 @@
+@media screen and (min-width: 720px) {
+    .safeArea {
+        padding: 4em 25% !important;
+    }
+    .imgViewer {
+        max-width: 85%;
+    }
+    .sidebar-container {
+        padding: 6em 35%;
+    }
+    .sidebar-container-list {
+        overflow-y: auto !important;
+    }
+    #sidebar-toggle {
+        left: 2em !important;
+    }
+    #home-toggle {
+        right: 2em !important;
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/custom.css">
+    <title>Menu Login</title>
+</head>
+
+<body>
+    <%- include('template/loader.ejs') %>
+        <div class='d-flex w-100 vh-100 justify-content-center align-items-center' style='position: relative; top: -2em'>
+            <div class='d-flex flex-column align-items-center'>
+                <div style='max-width: 24em' class='mb-5'>
+                    <img style='width: 100%' src='assets/img_app/tamansariLogoGrey.png'>
+                </div>
+                <form autocomplete="off" method='POST' class='w-100 d-flex flex-column align-items-center'>
+                    <div style='width: 65%' class='text-orange d-flex flex-column align-items-center my-2'>
+                        <input type="text" class='inputStylish text-orange my-1 w-100' placeholder="Username" name='Username' required>
+                        <div class='divider-orange'></div>
+                    </div>
+                    <div style='width: 65%' class='text-orange d-flex flex-column align-items-center my-2'>
+                        <input type="password" class='inputStylish text-orange my-1 w-100' placeholder="Password" name='Password' required>
+                        <div class='divider-orange'></div>
+                    </div>
+                    <div style='width: 65%' class='text-orange d-flex flex-column align-items-center my-4'>
+                        <button class='buttonStylish w-100'>Login</button>
+                    </div>
+                    <div style='width: 65%; display: none' class='text-orange flex-column align-items-center' id='invalidText'>
+                        <div class='text-center' id='invalidCode'></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+
+<script>
+    //Ngecek kalo salah, tulisan invalidnya bakal muncul
+    invalid = document.getElementById('invalidText');
+    invalidCode = document.getElementById('invalidCode');
+    urlNow = new URL(window.location.href)
+    state = new URLSearchParams(urlNow.search)
+    if (state.get('error')) {
+        invalid.style.display = 'flex'
+        switch (state.get('error')) {
+            case 'loginFailed':
+                invalidCode.innerHTML = 'Username atau Password salah';
+                break
+            case 'noLogin':
+                invalidCode.innerHTML = 'Silahkan login terlebih dahulu';
+                break
+        }
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,15 @@
+<div class='loader justify-content-center align-items-center' style='display: flex;'>
+    <img src="/assets/img_app/tamansariIconSmall.png" height="36px">
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+
+        var loader = document.getElementsByClassName('loader')[0]
+
+        loader.style.animation = '1s dissappear'
+        loader.onanimationend = function() {
+            loader.style.display = 'none'
+        }
+    })
+</script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugaskan Laporan</title>
+</head>
+
+<body>
+
+    <%- include('template/sidebar.ejs') %>
+        <%- include('template/loader.ejs') %>
+            <div class='safeArea'>
+
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Perbarui Tugas</div>
+                    <div class='divider-orange'></div>
+                </div>
+
+                <div style='margin: 2em 0 0 0' class='d-flex flex-column align-items-center'>
+
+                    <div class='imgViewer'>
+                        <img id='imgPreviewBefore' src='/image/<%= details.IMAGE_CURRENT %>before.jpeg'>
+                    </div>
+                    <div style="padding: 0 2em" class='text-center w-100'>
+                        <div style='margin: 2em 0'>
+                            <div class=' inputTitle text-white '>Topik / Lokasi</div>
+                            <div class='text-orange ' style='font-size: 1.25em; '>
+                                <%= details.TOPIC_CURRENT %>
+                            </div>
+                            <div class='inputTitle text-white '>Permasalahan</div>
+                            <div class='text-orange ' style='font-size: 1.25em; '>
+                                <%= details.PROBLEM_CURRENT %>
+                            </div>
+                            <div class='inputTitle text-white '>Tindak Lanjut / Saran</div>
+                            <div class='text-orange ' style='font-size: 1.25em; '>
+                                <%= details.SUGGEST_CURRENT %>
+                            </div>
+                        </div>
+                        <form method='post' autocomplete="off">
+                            <div class='divider-orange' style='margin: 2em 0'></div>
+                            <div>
+                                <div class='inputTitle text-white '>Penanggung Jawab Sekarang</div>
+                                <div class='text-orange ' style='font-size: 1.25em; '>
+                                    <% if(details.ASSIGNEE_REAL_NAME !== null) { %>
+                                        <%= details.ASSIGNEE_REAL_NAME %>
+                                            <% } else { %>
+                                                <%= 'Belum Ada' %>
+                                                    <% } %>
+                                </div>
+                                <div class='inputTitle text-white'>Pilih Penanggung Jawab</div>
+                                <div class='background-black py-1 text-align-center'>
+                                    <select class='inputStylish text-orange' name='PICInput'>
+                                <% let selected; %>
+                                <% for(const usersList of users) { 
+                                    if(details.ASSIGNEE_REAL_NAME == usersList.REAL_NAME) {
+                                        selected = 'selected';
+                                    } else {
+                                        selected = null;
+                                    }
+                                %>
+                                <option value='<%= usersList.REAL_NAME %>' class='background-black' <%= selected %>><%= usersList.REAL_NAME %></option>
+                                <% } %>
+                                </select>
+                                </div>
+                            </div>
+                            <div class='divider-orange' style='margin: 2em 0'></div>
+                            <div>
+                                <div class='inputTitle text-white '>Tanggal Lapor</div>
+                                <div class='text-orange ' style='font-size: 1.25em; '>
+                                    <%= details.DATE_CREATED %>
+                                </div>
+                                <div class='inputTitle text-white '>Deadline Penyelesaian</div>
+                                <div class='text-orange ' style='font-size: 1.25em; '>
+                                    <%= details.DATE_DUE %>
+                                </div>
+                                <div class='inputTitle text-white'>Pilih Deadline</div>
+                                <div class='background-black py-1'>
+                                    <input type='date' name='duedateInput' id='duedateInput' value="<%= details.DATE_DUE %>" min="<%= today %>" required class='inputStylish text-orange'>
+                                </div>
+                            </div>
+                    </div>
+                    <button type='submit' class='buttonStylish' style='margin: 4em auto 0 auto; width: 100%;'>Tugaskan</button>
+                    </form>
+                </div>
+
+            </div>
+
+</html>

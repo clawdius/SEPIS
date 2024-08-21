@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <%- include('template/sidebar.ejs')
+ %>
+
+
+        <div class='safeArea' style='font-family: roboto;;'>
+            <div class='d-flex listAssetsTopContainer align-items-center'>
+                <div class='topTitle'>Daftar Aset Prospero</div>
+                <div class='searchListAssets d-flex align-items-center background-black'>
+                    <input type="text" class="customInput" id='searchListAssets' placeholder="Cari Aset...">
+                    <div style='margin: 0 0.5em 0 0'>
+                        <img src='/assets/img_app/search_cross.svg' id='clearSearch'>
+                    </div>
+                </div>
+            </div>
+            <div class='divider-orange' style='margin: 0 0 1em 0'></div>
+            <div class='listAssets'>
+                <table class='w-100' style='text-align: center' id='tableAssets'>
+                    <tr style='background-color: var(--orange); color: var(--darkgrey)'>
+                        <th style='padding: 0.25em 0; width: 4em;'>No</th>
+                        <th><a href='/dashboard?sortBy=KODE_INVENTARIS'>Kode Inventaris</a></th>
+                        <th><a href='/dashboard?sortBy=NAMA_ASET'>Nama Aset</a></th>
+                        <th><a href='/dashboard?sortBy=MERK'>Merk</a></th>
+                        <th><a href='/dashboard?sortBy=JUMLAH_UNIT'>Jumlah Unit</a></th>
+                        <th><a href='/dashboard?sortBy=HARGA_BELI'>Harga Unit</a></th>
+                        <th><a href='/dashboard?sortBy=STATUS'>Status</a></th>
+                        <th><a href='/dashboard?sortBy=DATE_BELI'>Bulan Beli</a></th>
+                        <th><a href='/dashboard?sortBy=DATE_ENTRI'>Tanggal Entri</a></th>
+                    </tr>
+                    <tbody>
+                        <% let number = 0 %>
+                            <% for (const assets of listAssets) {%>
+                                <% if(number % 2 == 0) { %>
+                                    <tr style='background-color: var(--semidarkgrey1);'>
+                                        <% } else { %>
+                                            <tr style='background-color: var(--semidarkgrey2);'>
+                                                <% } %>
+                                                    <td style='padding: 0.5em 0'>
+                                                        <%= number %>
+                                                    </td>
+                                                    <td>
+                                                        <%= assets.KODE_INVENTARIS %>
+                                                    </td>
+                                                    <td style='font-weight: 500;'>
+                                                        <a href='/assets/<%= assets.KODE_INVENTARIS %>'>
+                                                            <%= assets.NAMA_ASET %>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <%= assets.MERK %>
+                                                    </td>
+                                                    <td>
+                                                        <%= assets.JUMLAH_UNIT %>
+                                                    </td>
+                                                    <td>
+                                                        <%= currencyFormatter(assets.HARGA_BELI) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= assets.STATUS %>
+                                                    </td>
+                                                    <td>
+                                                        <%= assets.DATE_BELI %>
+                                                    </td>
+                                                    <td>
+                                                        <%= assets.DATE_ENTRI %>
+                                                    </td>
+                                            </tr>
+                                            <% number++ %>
+                                                <% } %>
+                    </tbody>
+                </table>
+                <div class='noAssets text-white justify-content-center align-items-center flex-column'>
+                    Aset tidak ditemukan
+                </div>
+            </div>
+            <a class='buttonStylish' style='margin: auto 0 0 auto; width: fit-content;' href="/assets/add ">Tambah Aset Baru</a>
+        </div>
+</body>
+
+<!-- JS -->
+<script type='text/javascript' src='/assets/searchAndClear.js'></script>
+
+</html>

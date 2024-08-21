@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+
+            <div class='safeArea'>
+                <div style='margin: 2em 0 4em'>
+                    <div class='topTitle' style='margin: 0'>Halo,
+                        <%- real_name %>
+                    </div>
+                    <div class='bottomTitle'>Anda masuk sebagai
+                        <span style='font-weight: 400;'><%- role %></span>
+                    </div>
+                </div>
+                <!-- Konfirmasi Laporan -->
+                <div style="margin: 2em 0">
+                    <div class='topTitle'>Perlu Konfirmasi</div>
+                    <div class='divider-orange'></div>
+                    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+                        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+                            <div class='col-4 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                Topik
+                            </div>
+                            <div class='col-4 justify-content-center align-items-center d-flex py-1 background-darkorange'>
+                                Masalah
+                            </div>
+                            <div class='col-4 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                Pelapor
+                            </div>
+                        </div>
+                        <% number = 0 %>
+                            <% let color %>
+                                <% for (const needConfirmationResult of needConfirmation) { %>
+                                    <%  if(number % 2 == 0) {
+                            color = 'background-semidarkgrey1'
+                        } else {
+                            color = 'background-semidarkgrey2'
+                        }
+                        %>
+                                        <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/confirmation/<%= needConfirmationResult.ID_PROPOSED %>'">
+                                            <div class='col-4 justify-content-center align-items-center d-flex'>
+                                                <%= needConfirmationResult.TOPIC_PROPOSED %>
+                                            </div>
+                                            <div class='col-4 justify-content-center align-items-center d-flex'>
+                                                <%= needConfirmationResult.PROBLEM_PROPOSED %>
+                                            </div>
+                                            <div class='col-4 justify-content-center align-items-center d-flex'>
+                                                <%= needConfirmationResult.REAL_NAME %>
+                                            </div>
+                                        </div>
+                                        <% number++ %>
+                                            <% } %>
+                    </div>
+                    <% if(number == 4) { %>
+                        <button type="button" class='buttonStylish buttonCustom w-100' onclick="window.location = '/report/confirmation/'">Lihat Semua</button>
+                        <% } %>
+
+                </div>
+                <!-- Review Tindak Lanjut -->
+                <div style="margin: 2em 0">
+                    <div class='topTitle'>Review Tindak Lanjut</div>
+                    <div class='divider-orange'></div>
+                    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+                        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+                            <div class='col-6 justify-content-center align-items-center d-flex py-1 background-orange'>
+                                Masalah
+                            </div>
+                            <div class='col-6 justify-content-center align-items-center d-flex py-1 background-darkorange'>
+                                Tanggal Tindak Lanjut
+                            </div>
+                        </div>
+                        <% number = 0 %>
+                            <% for (const needReviewResult of needReview) { %>
+                                <%  if(number % 2 == 0) {
+                            color = 'background-semidarkgrey1'
+                        } else {
+                            color = 'background-semidarkgrey2'
+                        }
+                        %>
+
+                                    <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/review/<%= needReviewResult.ID_CURRENT %>'">
+                                        <div class='col-6 justify-content-center align-items-center d-flex'>
+                                            <%= needReviewResult.PROBLEM_CURRENT %>
+                                        </div>
+                                        <div class='col-6 justify-content-center align-items-center d-flex'>
+                                            <%= needReviewResult.DATE_SUBMITTED %>
+                                        </div>
+                                    </div>
+                                    <% number++ %>
+                                        <% } %>
+                    </div>
+                    <% if(number == 4) { %>
+                        <button type="button" class='buttonStylish buttonCustom w-100' onclick="window.location = '/report/review/'">Lihat Semua</button>
+                        <% } %>
+                </div>
+                <%- include('../template/dashboardCore.ejs') %>
+                    <button class='buttonStylish buttonCustom' onclick="window.location='/report/new' ">Buat Laporan Baru</button>
+            </div>
+
+</body>
+
+</html>

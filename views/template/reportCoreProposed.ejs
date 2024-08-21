@@ -1,0 +1,31 @@
+<div style='margin: 2em 0 0 0' class='d-flex flex-column align-items-center'>
+    <div class='text-white' style='font-size: 1.25em; margin: 0 0 1em 0; text-align: center;'>
+        <%= result.ID_PROPOSED %>
+    </div>
+    <div class='imgViewer'>
+        <img id='imgPreviewBefore' src='/image/<%= result.IMAGE_PROPOSED %>before.jpeg'>
+    </div>
+    <div style="padding: 0 2em" class='text-center'>
+        <div style='margin: 2em 0 0'>
+            <div class='inputTitle text-white'>Topik / Lokasi</div>
+            <div class='text-orange ' style='font-size: 1.25em;'>
+                <%= result.TOPIC_PROPOSED %>
+            </div>
+            <div class='inputTitle text-white'>Permasalahan</div>
+            <div class='text-orange ' style='font-size: 1.25em;'>
+                <%= result.PROBLEM_PROPOSED %>
+            </div>
+            <div class='inputTitle text-white'>Tindak Lanjut / Saran</div>
+            <div class='text-orange ' style='font-size: 1.25em;'>
+                <%= result.SUGGEST_PROPOSED %>
+            </div>
+            <div class='inputTitle text-white'>Pelapor</div>
+            <div class='text-orange ' style='font-size: 1.25em;'>
+                <%= result.REAL_NAME %>
+            </div>
+            <div class='inputTitle text-white'>Tanggal Lapor</div>
+            <div class='text-orange ' style='font-size: 1.25em;'>
+                <%= result.DATE_PROPOSED %>
+            </div>
+        </div>
+    </div>

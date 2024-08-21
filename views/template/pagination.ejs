@@ -1,0 +1,25 @@
+<div class='text-white text-center mt-3 row'>
+    <div class='col-4'>
+        <% if(!(current <= 1)){ %>
+            <div onclick="window.location = '?page=<%= parseInt(current) - 1 %>'" class='pageBefore'>
+                << </div>
+                    <% } %>
+            </div>
+            <div class='col-4'>
+                <div>
+                    <span class='currentPage'>
+                <%= parseInt(current) %>
+            </span> /
+                    <span class='maxPage'>
+                <%= parseInt(maxPage.MAX) %>
+            </span>
+                </div>
+            </div>
+            <div class='col-4'>
+                <% if(current != maxPage.MAX) { %>
+                    <div onclick="window.location = '?page=<%= parseInt(current) + 1 %>'" class='pageNext'>
+                        >>
+                    </div>
+                    <% } %>
+            </div>
+    </div>

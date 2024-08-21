@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposed Report</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs') %>
+        <%- include('../template/loader.ejs') %>
+
+
+            <div class='safeArea'>
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Detail Laporan</div>
+                    <div class='divider-orange'></div>
+                </div>
+
+                <%- include('../template/reportCoreProposed.ejs') %>
+
+                    <% if (username == result.USERNAME) {%>
+                        <% let deleteLoc = '/report/proposed/'+result.ID_PROPOSED+'/delete' %>
+                            <button class='buttonStylishOutline w-100 buttonCustom mt-5' onclick='window.location="<%= deleteLoc %>"'>Hapus Laporan</button>
+                            <% } %>
+            </div>
+
+</body>
+
+</html>

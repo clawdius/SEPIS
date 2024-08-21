@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Pengguna</title>
+</head>
+
+<body>
+
+    <%- include('../template/sidebar.ejs')  %>
+        <%- include('../template/loader.ejs') %>
+
+            <div class='safeArea'>
+                <div style='margin: 1em 0 0 0'>
+                    <div class='topTitle'>Tambah Pengguna</div>
+                    <div class='divider-orange'></div>
+                </div>
+                <div style='margin: 1em 0 0 0' class='d-flex flex-column align-items-center'>
+                    <form method='post' class='d-flex flex-column w-100' autocomplete="off" id='formAddUser'>
+                        <div class='w-100 d-flex flex-column align-items-center'>
+                            <div class='inputTitle text-white'>Nama</div>
+                            <div class='background-black py-1 w-100'>
+                                <input type='text' name='nameAdd' class='inputStylish text-orange' required>
+                            </div>
+                            <div class='inputTitle text-white'>Username</div>
+                            <div class='background-black py-1 w-100'>
+                                <input type='text' name='usernameAdd' class='inputStylish text-orange' required>
+                            </div>
+                            <div class='inputTitle text-white'>Jabatan</div>
+                            <div class='background-black py-1 w-100'>
+                                <select name='roleAdd' class="inputStylish text-orange">
+                                <option value='Manager'>Manajer</option>
+                                <option value='User' selected>User</option>
+                            </select>
+                            </div>
+                            <div class='w-100 text-center' id='form-password'>
+                                <div class='inputTitle text-white'>Password Baru</div>
+                                <div class='background-black py-1'>
+                                    <input type='password' name='passwordInput' id='password-input' class='inputStylish text-orange'>
+                                </div>
+                                <div class='inputTitle text-white'>Konfirmasi Password</div>
+                                <div class='background-black py-1'>
+                                    <input type='password' name='passwordConfirm' id="password-confirm" onkeyup="validate()" class='inputStylish text-orange'>
+                                </div>
+                            </div>
+                            <div class='text-center text-white mt-3' id='validation-div'></div>
+                            <button type="button" onclick='submitCheck()' class='buttonStylish' style='margin: 2em auto 0 auto; width: 100%;'>Tambah Pengguna</button>
+                            <div class='text-center text-orange mt-3' id='submit-div'></div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                var passwordForm = document.getElementById('form-password')
+                var passwordInput = document.getElementById('password-input')
+                var passwordConfirm = document.getElementById('password-confirm')
+                var passwordDiv = document.getElementById('validation-div')
+                var submitDiv = document.getElementById('submit-div')
+
+                function validate() {
+                    if (!(passwordConfirm.value == "" || passwordInput.value == "")) {
+                        if (passwordInput.value == passwordConfirm.value) {
+                            passwordDiv.innerText = 'Password Sesuai!'
+                        } else {
+                            passwordDiv.innerText = 'Password Tidak Sesuai!'
+                        }
+                    } else {
+                        passwordDiv.innerText = ''
+                    }
+                }
+
+                function submitCheck() {
+                    validate()
+
+                    if (!(passwordConfirm.value == "" || passwordInput.value == "")) {
+                        if (passwordInput.value == passwordConfirm.value) {
+                            document.getElementById('formAddUser').submit()
+                        } else {
+                            submitDiv.innerText = 'Password Tidak Sesuai!'
+                        }
+                    } else {
+                        submitDiv.innerText = 'Password Tidak Boleh Kosong!'
+                    }
+                }
+            </script>
+
+</body>
+
+
+</html>

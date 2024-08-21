@@ -1,0 +1,148 @@
+<div style='margin: 2em 0'>
+    <div class='topTitle'>Tugas Saya</div>
+    <div class='divider-orange'></div>
+    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+            <div class='col-4 justify-content-center align-items-center d-flex background-orange py-1'>
+                Masalah
+            </div>
+            <div class='col-4 justify-content-center align-items-center d-flex background-darkorange py-1'>
+                Deadline
+            </div>
+            <div class='col-4 justify-content-center align-items-center d-flex background-orange py-1'>
+                Status
+            </div>
+        </div>
+        <% let number = 0 %>
+            <% let color %>
+                <% for (const assignedResult of assigned) { %>
+
+                    <%  if(number % 2 == 0) {
+                            color = 'background-semi'
+                            if(today >= assignedResult.DATE_DUE){
+                                color = color + 'darkred1'
+                            } else {
+                                color = color + 'darkgrey1'
+                            }
+                            
+                        } else {
+                            color = 'background-semi'
+                            if(today >= assignedResult.DATE_DUE){
+                                color = color + 'darkred2'
+                            } else {
+                                color = color + 'darkgrey2'
+                            }
+                            
+                        }
+
+                        %>
+
+                        <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/current/<%= assignedResult.ID_CURRENT %>/submit'">
+                            <div class='col-4 justify-content-center align-items-center d-flex px-1'>
+                                <%= assignedResult.PROBLEM_CURRENT %>
+                            </div>
+                            <div class='col-4 justify-content-center align-items-center d-flex px-1'>
+                                <%= assignedResult.DATE_DUE %>
+                            </div>
+                            <div class='col-4 justify-content-center align-items-center d-flex px-1'>
+                                <%= assignedResult.STATUS_CURRENT %>
+                            </div>
+                        </div>
+                        <% number++ %>
+                            <% } %>
+    </div>
+    <% if(number == 4) { %>
+        <button type="button" class='buttonStylish buttonCustom w-100' onclick="window.location = '/report/mytasks/'">Lihat Semua</button>
+        <% } %>
+</div>
+<div style='margin: 2em 0'>
+    <div class='topTitle'>Belum Dikonfirmasi</div>
+    <div class='divider-orange'></div>
+    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+            <div class='col-6 justify-content-center align-items-center d-flex background-orange py-1'>
+                Topik
+            </div>
+            <div class='col-6 justify-content-center align-items-center d-flex background-darkorange py-1'>
+                Masalah
+            </div>
+        </div>
+        <% number = 0 %>
+            <% for (const unconfirmedResult of unconfirmed) { %>
+
+                <%  if(number % 2 == 0) {
+                            color = 'background-semidarkgrey1'
+                        } else {
+                            color = 'background-semidarkgrey2'
+                        }
+                        %>
+
+                    <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/proposed/<%= unconfirmedResult.ID_PROPOSED %>'">
+                        <div class='col-6 justify-content-center align-items-center d-flex px-1'>
+                            <%= unconfirmedResult.TOPIC_PROPOSED %>
+                        </div>
+                        <div class='col-6 justify-content-center align-items-center d-flex px-1'>
+                            <%= unconfirmedResult.PROBLEM_PROPOSED %>
+                        </div>
+                    </div>
+                    <% number++ %>
+                        <% } %>
+    </div>
+    <% if(number == 4) { %>
+        <button type="button" class='buttonStylish buttonCustom w-100' onclick="window.location = '/report/proposed/'">Lihat Semua</button>
+        <% } %>
+</div>
+<div style='margin: 2em 0'>
+    <div class='topTitle'>Laporan Berjalan</div>
+    <div class='divider-orange'></div>
+    <div class='mainContent text-white d-flex flex-column background-black' style='text-align: center; margin: 0.5em 0 0 0;'>
+        <div class='w-100 d-flex' style="font-weight: 400; padding: 0 0 0 0">
+            <div class='col-4 justify-content-center align-items-center d-flex background-orange py-1'>
+                Masalah
+            </div>
+            <div class='col-4 justify-content-center align-items-center d-flex background-darkorange py-1'>
+                Deadline
+            </div>
+            <div class='col-4 justify-content-center align-items-center d-flex background-orange py-1'>
+                PIC
+            </div>
+        </div>
+        <% number = 0 %>
+            <% for (const globalReportResult of globalReport) { %>
+                <%  if(number % 2 == 0) {
+                            color = 'background-semi'
+                            if(today >= globalReportResult.DATE_DUE){
+                                color = color + 'darkred1'
+                            } else {
+                                color = color + 'darkgrey1'
+                            }
+                            
+                        } else {
+                            color = 'background-semi'
+                            if(today >= globalReportResult.DATE_DUE){
+                                color = color + 'darkred2'
+                            } else {
+                                color = color + 'darkgrey2'
+                            }
+                            
+                        }
+                        %>
+
+                    <div class='w-100 d-flex py-3 <%= color %> table-row' onclick="window.location='/report/current/<%= globalReportResult.ID_CURRENT %>'">
+                        <div class='col-4 justify-content-center align-items-center d-flex px-1'>
+                            <%= globalReportResult.PROBLEM_CURRENT %>
+                        </div>
+                        <div class='col-4 justify-content-center align-items-center d-flex px-1'>
+                            <%= globalReportResult.DATE_DUE %>
+                        </div>
+                        <div class='col-4 justify-content-center align-items-center d-flex px-1'>
+                            <%= globalReportResult.REAL_NAME %>
+                        </div>
+                    </div>
+                    <% number++ %>
+                        <% } %>
+    </div>
+    <% if(number == 4) { %>
+        <button type="button" class='buttonStylish buttonCustom w-100' onclick="window.location = '/report/current'">Lihat Semua</button>
+        <% } %>
+</div>
