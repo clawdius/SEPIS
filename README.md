@@ -1,8 +1,8 @@
 # Service Excellence Patrol Integrated System
 
-<img src="https://github.com/user-attachments/assets/3a0a2596-6525-4362-8b9a-2627044d3a32" width="300">
-<img src="https://github.com/user-attachments/assets/57ce4956-12c0-4bdc-b5e4-a9ba3e750f6a" width="300">
-<img src="https://github.com/user-attachments/assets/c75e7423-ffff-432f-9516-e19d375e38f0" width="300">
+<img src="https://github.com/user-attachments/assets/3a0a2596-6525-4362-8b9a-2627044d3a32" width="200">
+<img src="https://github.com/user-attachments/assets/57ce4956-12c0-4bdc-b5e4-a9ba3e750f6a" width="200">
+<img src="https://github.com/user-attachments/assets/c75e7423-ffff-432f-9516-e19d375e38f0" width="200">
 
 A digitalized implementation of the Service Excellence Patrol activity, conducted by Tamansari Prospero.
 
